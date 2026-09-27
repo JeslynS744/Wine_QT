@@ -36,6 +36,22 @@ html, body, [class*="css"] {
     font-family: 'Inter', sans-serif;
 }
 
+/* Hide Streamlit top toolbar (Deploy / Stop / ⋮ menu) */
+[data-testid="stToolbar"] {
+    display: none !important;
+}
+
+/* Hide the thin colored top bar */
+[data-testid="stDecoration"] {
+    display: none !important;
+}
+
+/* Hide the top header area entirely */
+header[data-testid="stHeader"] {
+    display: none !important;
+}
+
+
 /* Main background gradient */
 .stApp {
     background: linear-gradient(135deg, #1a0a0a 0%, #2d0f1a 40%, #1a1a2e 100%);
