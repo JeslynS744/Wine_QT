@@ -10,6 +10,10 @@ import streamlit as st
 import numpy as np
 import joblib
 import os
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.ensemble import RandomForestClassifier
 
 # ── Page configuration ─────────────────────────────────────────────────────────
 st.set_page_config(
@@ -134,6 +138,50 @@ div.stButton > button:hover {
 }
 </style>
 """, unsafe_allow_html=True)
+
+
+# ── Auto-train if .pkl files are missing (e.g. first deploy on Render) ────────
+def auto_train():
+    """Train and save model + scaler if they don't exist on disk."""
+    model_path  = os.path.join(os.path.dirname(__file__), "wine_model.pkl")
+    scaler_path = os.path.join(os.path.dirname(__file__), "scaler.pkl")
+
+    if os.path.exists(model_path) and os.path.exists(scaler_path):
+        return  # already trained — nothing to do
+
+    csv_path = os.path.join(os.path.dirname(__file__), "WineQT.csv")
+    if not os.path.exists(csv_path):
+        return  # dataset not available — let load_artifacts() surface the error
+
+    # Load & prepare data
+    df = pd.read_csv(csv_path)
+    df.drop(columns=["Id"], inplace=True, errors="ignore")
+    X = df.drop(columns=["quality"])
+    y = df["quality"]
+
+    # Split
+    X_train, _, y_train, _ = train_test_split(
+        X, y, test_size=0.20, random_state=42, stratify=y
+    )
+
+    # Scale
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+
+    # Train
+    model = RandomForestClassifier(
+        n_estimators=200, min_samples_split=4, min_samples_leaf=2,
+        class_weight="balanced", random_state=42, n_jobs=-1
+    )
+    model.fit(X_train_scaled, y_train)
+
+    # Save
+    joblib.dump(model,  model_path)
+    joblib.dump(scaler, scaler_path)
+
+
+# Run auto-train before anything else (no-op if .pkl files already exist)
+auto_train()
 
 
 # ── Load model and scaler ──────────────────────────────────────────────────────
