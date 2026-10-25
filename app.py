@@ -71,6 +71,24 @@ header[data-testid="stHeader"] {
     display: none !important;
 }
 
+/* ── Completely Hide Header Anchor Links (Paperclip / Pin Icons) ── */
+[data-testid="stHeaderActionElements"],
+[data-testid="stHeadingActionElements"],
+a[data-testid="stHeaderActionElements"],
+a[data-testid="stHeadingActionElements"],
+.stHeading [data-testid="stHeadingActionElements"],
+.stMarkdown a[href^="#"],
+a.anchorjs-link,
+a.anchor-link,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    pointer-events: none !important;
+}
+
 /* Block container padding & max width */
 .block-container {
     padding-top: 0rem !important;
@@ -86,7 +104,7 @@ header[data-testid="stHeader"] {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
-    padding: 2.6rem 1.5rem 2.2rem;
+    padding: 2.2rem 1.5rem 1.9rem;
     background: linear-gradient(180deg, rgba(38, 12, 26, 0.95) 0%, rgba(20, 7, 16, 0.98) 75%, rgba(13, 5, 11, 0.95) 100%);
     border-bottom: 1px solid rgba(244, 63, 94, 0.28);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
@@ -98,47 +116,61 @@ header[data-testid="stHeader"] {
 }
 
 .banner-content {
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-title-flex {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.35rem;
 }
 
 .header-logo-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 68px;
-    height: 68px;
+    width: 58px;
+    height: 58px;
     background: radial-gradient(circle, rgba(244, 63, 94, 0.25) 0%, rgba(159, 18, 57, 0.1) 80%);
     border: 1px solid rgba(244, 63, 94, 0.4);
-    border-radius: 20px;
-    box-shadow: 0 0 24px rgba(225, 29, 72, 0.35);
-    margin-bottom: 0.8rem;
-    font-size: 2.3rem;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(225, 29, 72, 0.35);
+    font-size: 2rem;
+    line-height: 1;
     animation: gentle-glow 3s ease-in-out infinite alternate;
 }
 
 @keyframes gentle-glow {
-    0% { box-shadow: 0 0 16px rgba(225, 29, 72, 0.25); transform: translateY(0); }
-    100% { box-shadow: 0 0 28px rgba(244, 63, 94, 0.45); transform: translateY(-2px); }
+    0% { box-shadow: 0 0 14px rgba(225, 29, 72, 0.25); transform: translateY(0); }
+    100% { box-shadow: 0 0 24px rgba(244, 63, 94, 0.45); transform: translateY(-2px); }
 }
 
 .header-title {
-    font-size: 2.7rem;
+    font-size: 2.65rem;
     font-weight: 800;
     letter-spacing: -0.025em;
     background: linear-gradient(90deg, #ff758c 0%, #ff8e53 50%, #fecdd3 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 0.2rem 0 0.5rem;
-    line-height: 1.15;
+    margin: 0;
+    line-height: 1.2;
 }
 
 .header-subtitle {
     color: rgba(241, 245, 249, 0.72);
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     font-weight: 400;
     letter-spacing: 0.01em;
-    margin: 0;
+    margin: 0.3rem 0 0;
+    text-align: center;
 }
 
 /* ── Categorized Input Cards ── */
@@ -179,19 +211,6 @@ div[data-testid="stVerticalBlockBorderWrapper"]:hover {
     letter-spacing: 0.01em;
 }
 
-.card-category-badge {
-    margin-left: auto;
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
-    background: rgba(244, 63, 94, 0.14);
-    color: #fda4af;
-    border: 1px solid rgba(244, 63, 94, 0.25);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
 /* Slider aesthetic overrides */
 div[data-testid="stSlider"] label {
     font-size: 0.88rem !important;
@@ -215,22 +234,11 @@ div[data-testid="stSlider"] div[role="slider"] {
     background: rgba(20, 10, 18, 0.8) !important;
     border: 1px solid rgba(244, 63, 94, 0.22) !important;
     border-radius: 18px !important;
-    padding: 1.5rem 1.75rem 1.25rem !important;
+    padding: 1.35rem 1.75rem 1.15rem !important;
     box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45) !important;
     backdrop-filter: blur(14px) !important;
     margin-top: 1.8rem;
     margin-bottom: 1.5rem;
-}
-
-.values-header-flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
-    padding-bottom: 0.9rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .values-title {
@@ -244,38 +252,9 @@ div[data-testid="stSlider"] div[role="slider"] {
 }
 
 .values-subtitle {
-    font-size: 0.9rem;
-    color: rgba(241, 245, 249, 0.65);
-    margin: 0.25rem 0 0;
-}
-
-.sync-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.35rem 0.85rem;
-    background: rgba(16, 185, 129, 0.12);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    border-radius: 20px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #6ee7b7;
-    letter-spacing: 0.02em;
-}
-
-.sync-dot {
-    width: 7px;
-    height: 7px;
-    background-color: #10b981;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #10b981;
-    animation: sync-pulse 1.8s infinite;
-}
-
-@keyframes sync-pulse {
-    0% { transform: scale(0.9); opacity: 0.6; }
-    50% { transform: scale(1.3); opacity: 1; }
-    100% { transform: scale(0.9); opacity: 0.6; }
+    font-size: 0.92rem;
+    color: rgba(241, 245, 249, 0.7);
+    margin: 0.35rem 0 0;
 }
 
 /* Number Inputs styling */
@@ -349,7 +328,11 @@ div.stButton > button:active {
 .result-card-container {
     padding: 2.2rem 2.5rem;
     border-radius: 20px;
-    text-align: center;
+    text-align: center !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-top: 1rem;
     margin-bottom: 2rem;
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
@@ -379,6 +362,7 @@ div.stButton > button:active {
     margin-bottom: 0.4rem;
     letter-spacing: -0.04em;
     font-family: 'Inter', sans-serif;
+    text-align: center;
 }
 
 .result-label-badge {
@@ -387,14 +371,29 @@ div.stButton > button:active {
     font-weight: 700;
     margin-bottom: 0.6rem;
     letter-spacing: -0.01em;
+    text-align: center;
 }
 
 .result-desc-text {
     font-size: 1.05rem;
-    color: rgba(241, 245, 249, 0.85);
-    max-width: 650px;
+    color: rgba(241, 245, 249, 0.88);
+    max-width: 720px;
     margin: 0 auto;
-    line-height: 1.5;
+    line-height: 1.55;
+    text-align: center !important;
+}
+
+/* Custom styled section headers with NO anchor clip icons */
+.clean-section-header {
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 1.4rem;
+    margin-bottom: 0.9rem;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 /* Stat pills */
@@ -621,11 +620,14 @@ def render_slider(key):
     )
 
 # ── 6. Section 1: Top Header Banner (Edge-to-Edge) ─────────────────────────────
+# Wine logo badge positioned directly before the title in the horizontal header
 st.markdown("""
 <div class="top-header-banner">
     <div class="banner-content">
-        <div class="header-logo-badge">🍷</div>
-        <h1 class="header-title">Wine Quality Predictor</h1>
+        <div class="header-title-flex">
+            <div class="header-logo-badge">🍷</div>
+            <h1 class="header-title">Wine Quality Predictor</h1>
+        </div>
         <p class="header-subtitle">
             Physicochemical Analysis & Machine Learning Classification Platform
         </p>
@@ -645,7 +647,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# Row 1: 3 cards (Acidity, Sugar & Salt, Sulfur Dioxide)
+# Row 1: 3 cards (Acidity, Sugar & Salt, Sulfur Dioxide) — badges removed
 r1_col1, r1_col2, r1_col3 = st.columns(3, gap="medium")
 
 with r1_col1:
@@ -654,7 +656,6 @@ with r1_col1:
         <div class="card-category-header">
             <span class="card-category-icon">🧪</span>
             <span class="card-category-title">Acidity</span>
-            <span class="card-category-badge">3 Features</span>
         </div>
         """, unsafe_allow_html=True)
         render_slider("fixed_acidity")
@@ -667,7 +668,6 @@ with r1_col2:
         <div class="card-category-header">
             <span class="card-category-icon">🍬</span>
             <span class="card-category-title">Sugar & Salt</span>
-            <span class="card-category-badge">2 Features</span>
         </div>
         """, unsafe_allow_html=True)
         render_slider("residual_sugar")
@@ -679,13 +679,12 @@ with r1_col3:
         <div class="card-category-header">
             <span class="card-category-icon">💨</span>
             <span class="card-category-title">Sulfur Dioxide</span>
-            <span class="card-category-badge">2 Features</span>
         </div>
         """, unsafe_allow_html=True)
         render_slider("free_sulfur_dio")
         render_slider("total_sulfur_dio")
 
-# Row 2: 2 cards (Physical Properties, Additives and Alcohol)
+# Row 2: 2 cards (Physical Properties, Additives and Alcohol) — badges removed
 r2_col1, r2_col2 = st.columns(2, gap="medium")
 
 with r2_col1:
@@ -694,7 +693,6 @@ with r2_col1:
         <div class="card-category-header">
             <span class="card-category-icon">⚖️</span>
             <span class="card-category-title">Physical Properties</span>
-            <span class="card-category-badge">2 Features</span>
         </div>
         """, unsafe_allow_html=True)
         render_slider("density")
@@ -706,7 +704,6 @@ with r2_col2:
         <div class="card-category-header">
             <span class="card-category-icon">🍷</span>
             <span class="card-category-title">Additives and Alcohol</span>
-            <span class="card-category-badge">2 Features</span>
         </div>
         """, unsafe_allow_html=True)
         render_slider("sulphates")
@@ -715,17 +712,8 @@ with r2_col2:
 # ── 8. Section 3: Interactive "Current Feature Values" (Middle Section) ────────
 st.markdown("""
 <div class="values-panel-card">
-    <div class="values-header-flex">
-        <div>
-            <h3 class="values-title">📋 Current Feature Values</h3>
-            <p class="values-subtitle">
-                Interactive values synced in real-time with the sliders above. Click or type to calibrate precise values.
-            </p>
-        </div>
-        <div class="sync-badge">
-            <span class="sync-dot"></span> Bidirectional Sync Active
-        </div>
-    </div>
+    <h3 class="values-title">📋 Current Feature Values</h3>
+    <p class="values-subtitle">Click or type to calibrate precise values.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -790,7 +778,8 @@ for col, key in zip(cols_c, row_c_keys):
 st.markdown("<div style='margin-top: 1.5rem;'></div>", unsafe_allow_html=True)
 
 # ── 9. Section 4: Prediction Action & Results (Bottom Section) ─────────────────
-predict_clicked = st.button("🍷 Predict Wine Quality", use_container_width=True)
+# Glass wine icon removed from predict button
+predict_clicked = st.button("Predict Wine Quality", use_container_width=True)
 
 feature_keys_in_order = [
     "fixed_acidity", "volatile_acidity", "citric_acid",
@@ -846,17 +835,22 @@ if "prediction_output" in st.session_state:
         desc = "Exceptional chemical balance, complexity, and alcohol integration. Characteristic of reserve or premium vintage quality."
         score_color = "#34d399"
 
-    # Main evaluation banner
+    # Main evaluation banner with horizontally centered description
     st.markdown(f"""
     <div class="result-card-container {card_class}">
         <div class="result-score-digit" style="color:{score_color};">{emoji} {score}</div>
         <div class="result-label-badge" style="color:{score_color};">{label}</div>
-        <p class="result-desc-text">{desc}</p>
+        <p class="result-desc-text" style="text-align: center; margin: 0 auto;">{desc}</p>
     </div>
     """, unsafe_allow_html=True)
 
-    # Key Evaluation Statistics
-    st.markdown("#### 📈 Key Physicochemical Diagnostics & Statistics")
+    # Key Evaluation Statistics (custom class to avoid Streamlit header anchor clips)
+    st.markdown("""
+    <div class="clean-section-header">
+        <span>📈</span>
+        <span>Key Physicochemical Diagnostics & Statistics</span>
+    </div>
+    """, unsafe_allow_html=True)
     stat_col1, stat_col2, stat_col3, stat_col4 = st.columns(4, gap="medium")
 
     # Acidity balance ratio
@@ -905,8 +899,13 @@ if "prediction_output" in st.session_state:
 
     st.markdown("<div style='margin-top: 1.5rem;'></div>", unsafe_allow_html=True)
 
-    # Prediction Confidence Distribution
-    st.markdown("#### 📊 Prediction Confidence by Quality Score")
+    # Prediction Confidence Distribution (clean header without anchor clip)
+    st.markdown("""
+    <div class="clean-section-header">
+        <span>📊</span>
+        <span>Prediction Confidence by Quality Score</span>
+    </div>
+    """, unsafe_allow_html=True)
     bar_cols = st.columns(len(classes))
     for col, cls in zip(bar_cols, sorted(classes)):
         pct = proba_dict.get(cls, 0.0) * 100
@@ -918,9 +917,14 @@ if "prediction_output" in st.session_state:
         )
         col.progress(int(min(max(pct, 0.0), 100.0)))
 
-    # Quality Scale Reference
+    # Quality Scale Reference (clean header without anchor clip)
     st.markdown("---")
-    st.markdown("#### 🏷️ Quality Scale Reference")
+    st.markdown("""
+    <div class="clean-section-header">
+        <span>🏷️</span>
+        <span>Quality Scale Reference</span>
+    </div>
+    """, unsafe_allow_html=True)
     lcol1, lcol2, lcol3 = st.columns(3)
     with lcol1:
         st.markdown("""
