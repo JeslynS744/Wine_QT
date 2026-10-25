@@ -960,12 +960,3 @@ else:
     </div>
     """, unsafe_allow_html=True)
 
-# ── 10. Footer ─────────────────────────────────────────────────────────────────
-st.markdown("""
-<div style="margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); text-align: center;">
-    <p style="color: rgba(241, 245, 249, 0.4); font-size: 0.85rem; margin: 0;">
-        Wine Quality Predictor · Trained on the UCI Wine Quality Dataset (Red Wine) ·
-        Model: RandomForestClassifier
-    </p>
-</div>
-""", unsafe_allow_html=True)
